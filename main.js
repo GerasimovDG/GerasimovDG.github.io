@@ -41,3 +41,32 @@ li.innerHTML = "<a href=\"#\">...</a>";
 
 let drop = document.getElementsByClassName("dropdown");
 drop[0].append(li);
+
+
+
+// ДЗ - геттер и сеттер
+let strObj = {
+  text: "",
+  reverseText: "",
+
+  get strText(){
+    if(this.text == ""){
+      return "0";
+    }
+    // split при делении создает массив. join соединяет массив в один сплошный текст
+    this.reverseText = this.text.split('').reverse().join('');
+    return `text: ${this.text}\nreverse text: ${this.reverseText}`;
+  },
+
+  set strText(text){
+    let split = text.split(',');  
+    let _text = split.join('');  
+
+    this.text = _text;
+  },
+};
+
+console.log(strObj.strText);
+strObj.strText = "1,2,3,4,5";
+console.log(strObj.strText);
+
