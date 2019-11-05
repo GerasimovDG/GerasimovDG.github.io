@@ -17,7 +17,7 @@ this.onclick = function(event) {
   let target = event.target; // где был клик?
   // console.log(target.tagName);
 
-  if (target.className == "button"){
+  if (target.className == "button" && target.closest('.button-block') != null){
   	// если клик на кнопку - открыть/закрыть меню.
   	OpenMenu();
   	btn = target;
@@ -44,7 +44,7 @@ drop[0].append(li);
 
 
 
-// ДЗ - геттер и сеттер
+/*------- HomeWork - геттер и сеттер -------*/
 let strObj = {
   text: "",
   reverseText: "",
@@ -70,3 +70,91 @@ console.log(strObj.strText);
 strObj.strText = "1,2,3,4,5";
 console.log(strObj.strText);
 
+
+/*------ Homework - try catch-------*/
+function User(name, birthday) {
+  this.name = name;
+  this.birthday = birthday;
+  this.calcAge = function(){
+    let todayYear = new Date().getFullYear();
+      return todayYear - this.birthday.getFullYear();
+  }
+}
+
+//меняет цвет кнопки при
+function drowButton(color){
+  var trycatch = document.querySelectorAll('.trycatch');
+  for (let i = 0; i < trycatch.length; i++){
+    var btn = trycatch[i].querySelectorAll('.button')[0];
+    btn.addEventListener("click", function(){
+      if (this.style.backgroundColor == color){
+        this.style.backgroundColor = "";
+        return;
+      }
+      this.style.backgroundColor = color;
+    })
+  }
+}
+
+let tooltipElem = "";
+function positionMessage(target){
+  // спозиционируем его сверху от аннотируемого элемента (top-center)
+  let coords = target.getBoundingClientRect();
+    
+  let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth)/2;
+  if (left < 0) left = 0; // не заезжать за левый край окна
+
+  let top = coords.top - tooltipElem.offsetHeight - 5;
+  if (top < 0) { // если подсказка не помещается сверху, то отображать её снизу
+    top = coords.top + target.offsetHeight + 5;
+  }
+
+  tooltipElem.style.left = left + 'px';
+  tooltipElem.style.top = top + 'px';
+}
+
+function showMessage(text){
+  var trycatch = document.querySelectorAll('.trycatch');
+    for (let i = 0; i < trycatch.length; i++){
+      var btn2 = trycatch[i].querySelectorAll('.button')[0];
+      btn2.onclick = function(){
+
+        // если есть подсказка - удаляем ее
+        if (tooltipElem) {
+          tooltipElem.remove();
+          tooltipElem = null;
+          return;
+        }
+        let target = event.target;
+      
+            // ...создадим элемент для подсказки
+            tooltipElem = document.createElement('div');
+            tooltipElem.className = 'tooltip';
+            tooltipElem.innerHTML = text;
+            document.body.append(tooltipElem);
+      
+            // спозиционируем его сверху от аннотируемого элемента (top-center)
+            positionMessage(target);
+    }
+  }
+}
+
+
+const name = "Дима";
+const born = "new Date(1998, 4, 24)"; // введем текст вместо нормальной даты -> будет ошибка в дальнейших вычислениях
+let text = "";
+
+try{
+  let Dima = new User(name, born);
+  console.log(Dima.calcAge());
+  text = "Все получилось!";
+  b_color = "rgb(72, 214, 167)"
+} catch(e){
+  console.log(e);
+  console.log("Ошибочка. Что-то не так с датой");
+  text = "Ошибочка";
+  b_color = "rgb(153, 56, 56)"
+} finally {
+  showMessage(text);
+  drowButton(b_color);
+}
