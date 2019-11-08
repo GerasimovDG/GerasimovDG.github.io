@@ -150,7 +150,6 @@ try{
   text = "Все получилось!";
   b_color = "rgb(72, 214, 167)"
 } catch(e){
-  console.log(e);
   console.log("Ошибочка. Что-то не так с датой");
   text = "Ошибочка";
   b_color = "rgb(153, 56, 56)"
@@ -158,3 +157,95 @@ try{
   showMessage(text);
   drowButton(b_color);
 }
+
+
+// ---------------HW - наследование--------------------
+function Human() {} // define class and constructor
+// define class methods
+Human.prototype.init = function(name) {
+    this.name = name; // fields not require to be defined
+};
+Human.prototype.print = function() {
+    console.log(this.name);
+};
+
+function inherit(ParentClass) {
+
+  function ChildClass() {}
+    ChildClass.prototype = Object.create(ParentClass.prototype);
+    ChildClass.prototype.constructor = ChildClass;
+    ChildClass.prototype._super = ParentClass.prototype;
+
+	  return ChildClass;
+
+}
+
+var Man = inherit(Human);
+// Man.prototype = {
+// 	init : function(name) {
+//         name = 'Mr. ' + name;
+//         this._super.init.call(this, name); // call super
+//     }
+// }; - не работает
+Man.prototype.init = function(name){
+    name = 'Mr. ' + name;
+    this._super.init.call(this, name);
+};
+Man.prototype.car = "auto";
+Man.prototype.broad = false;
+Man.prototype.printProperty = function(){
+  console.log('--------\nName : ' + this.name);
+  console.log('Car : ' + this.car);
+  console.log('Broad : ' + this.broad);
+};
+
+var man = new Man();
+var man2 = new Man();
+
+man.init('Man1');
+man.car = "Audi";
+
+man2.init("Man2");
+man2.broad = true;
+man2.car = "Lada";
+
+man.printProperty();
+man2.printProperty();
+
+
+var Woman = inherit(Human);
+Woman.prototype.init = function(name){
+  name = 'Ms. ' + name;
+  this._super.init.call(this,name);
+};
+Woman.prototype.beauty = 10;
+Woman.prototype.printProperty = function(){
+  console.log('--------\nName : ' + this.name);
+  console.log('Beauty : ' + this.beauty + '/10');
+};
+Object.defineProperties(Woman.prototype, {
+  beautyGrade: {
+
+    get: function() {
+      return this.beauty;
+    },
+
+    set: function(grade) {
+      this.beauty = grade;
+    }
+  }
+});
+var girl = new Woman();
+girl.init('Tanya');
+girl.beautyGrade = 8;
+girl.printProperty();
+
+
+
+// console.dir(man);
+// console.log(man instanceof Human); // -> true
+// man.init('John');
+// // call parent method
+// man.print(); // -> 'Mr. John'
+
+
