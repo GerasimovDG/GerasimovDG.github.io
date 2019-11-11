@@ -160,24 +160,37 @@ try{
 
 
 // ---------------HW - наследование--------------------
-function Human() {} // define class and constructor
-// define class methods
-Human.prototype.init = function(name) {
-    this.name = name; // fields not require to be defined
+console.log('/ ------------------------------ \\');
+
+function Human(name = "any",age = 0) {
+  this.name = name;
+  this.age = age;
+  this.tiredness = false;
+}
+
+Object.defineProperty(Human.prototype, 'data',{
+  get: function(){
+    return 'Имя: ' + this.name + ' Возраст: ' + this.age;
+  },
+  set: function(value){
+    var val = value.split(' ');
+    this.name = val[0];
+    this.age = val[1];
+  }
+});
+Human.prototype.run = function(){
+  this.tiredness = true;
+  console.log(`Я, ${this.name}, побегал(а) и устал(а)`);
 };
-Human.prototype.print = function() {
-    console.log(this.name);
-};
+
 
 function inherit(ParentClass) {
-
   function ChildClass() {}
-    ChildClass.prototype = Object.create(ParentClass.prototype);
-    ChildClass.prototype.constructor = ChildClass;
-    ChildClass.prototype._super = ParentClass.prototype;
+  ChildClass.prototype = Object.create(ParentClass.prototype);
+  ChildClass.prototype.constructor = ChildClass;
+  ChildClass.prototype._super = ParentClass.prototype;
 
-	  return ChildClass;
-
+  return ChildClass;
 }
 
 var Man = inherit(Human);
@@ -187,65 +200,94 @@ var Man = inherit(Human);
 //         this._super.init.call(this, name); // call super
 //     }
 // }; - не работает
-Man.prototype.init = function(name){
-    name = 'Mr. ' + name;
-    this._super.init.call(this, name);
-};
-Man.prototype.car = "auto";
-Man.prototype.broad = false;
-Man.prototype.printProperty = function(){
-  console.log('--------\nName : ' + this.name);
-  console.log('Car : ' + this.car);
-  console.log('Broad : ' + this.broad);
-};
+// Man.prototype.constructor = function(name, age,beard) {
+//   name = 'Mr. ' + name;
+//   this._super.constructor.call(this, name, age); // call super
+//   this.beard = beard;
+// };  - не работает
+Man.prototype.init = function(name, age,beard) {
+  name = 'Mr. ' + name;
+  this._super.constructor.call(this, name, age); // call super
+  this.beard = beard;
+}
 
-var man = new Man();
-var man2 = new Man();
-
-man.init('Man1');
-man.car = "Audi";
-
-man2.init("Man2");
-man2.broad = true;
-man2.car = "Lada";
-
-man.printProperty();
-man2.printProperty();
-
+var he = new Man('Jack', 20, true);
+he.init('Jack', 20, true);
+he.run();
+console.dir(he);
 
 var Woman = inherit(Human);
-Woman.prototype.init = function(name){
+Woman.prototype.init = function(name,age, color = 'redhead'){
   name = 'Ms. ' + name;
-  this._super.init.call(this,name);
+  this._super.constructor.call(this,name,age);
+  this.hairColor = color;
+}
+Woman.prototype.birthBaby = function(){
+  console.log(`Я, ${this.name}, родила ребенка.`);
+}
+
+var she = new Woman();
+var jess = new Woman();
+she.init('Alisa',22, 'brunette');
+jess.init('Jess', 19);
+jess.run();
+she.birthBaby();
+console.dir(she);
+console.dir(jess);
+
+
+
+
+// Тоже самое классами
+console.log('/ ---------На классах----------- \\');
+class HumanC {
+  constructor(name = "any",age = 0) {
+    this.name = name;
+    this.age = age;
+    this.tiredness = false;
+  };
+
+  get data(){
+    return 'Имя: ' + this.name + ' Возраст: ' + this.age;
+  };
+  set data(value){
+    var val = value.split(' ');
+    this.name = val[0];
+    this.age = val[1];
+  };
+
+  run(){
+    this.tiredness = true;
+    console.log(`Я, ${this.name}, побегал(а) и устал(а)`);  
+  };
 };
-Woman.prototype.beauty = 10;
-Woman.prototype.printProperty = function(){
-  console.log('--------\nName : ' + this.name);
-  console.log('Beauty : ' + this.beauty + '/10');
-};
-Object.defineProperties(Woman.prototype, {
-  beautyGrade: {
 
-    get: function() {
-      return this.beauty;
-    },
+class ManC extends HumanC {
+  constructor(name, age, beard = false) {
+    name = 'Mr. ' + name;
+    // обязательно надо вызывать конструктор отца (через super)
+    super(name,age);
+    this.beard = beard;
+  };
+}
 
-    set: function(grade) {
-      this.beauty = grade;
-    }
-  }
-});
-var girl = new Woman();
-girl.init('Tanya');
-girl.beautyGrade = 8;
-girl.printProperty();
+let man = new ManC('Tod',21,true);
+man.run();
 
+class WomanC extends HumanC {
+  constructor(name,age, color = 'redhead'){
+    name = 'Mrs. ' + name;
+    super(name,age);
+    this.hairColor = color;
+  };
 
+  birthBaby(){
+    console.log(`Я, ${this.name}, родила ребенка.`);
+  };
+}
 
-// console.dir(man);
-// console.log(man instanceof Human); // -> true
-// man.init('John');
-// // call parent method
-// man.print(); // -> 'Mr. John'
+let woman = new WomanC('Angela',27,'brunette');
+woman.run();
+woman.birthBaby();
 
 
