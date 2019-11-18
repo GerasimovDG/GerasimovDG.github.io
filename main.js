@@ -184,39 +184,53 @@ Human.prototype.run = function(){
 };
 
 
-function inherit(ParentClass) {
-  function ChildClass() {}
+function inherit(ParentClass,keyss) {
+  function ChildClass(...args) {
+    let tmp = Object.keys(keyss);
+
+    // сначала определяем параметры по умолчанию
+    for (var t in keyss){
+      this[t] = keyss[t];
+    }
+
+    // теперь переопределяем те, которые указаны в параметрах конструктора
+    let minParam = args.length > tmp.length ? tmp : args;
+    for (let i = 0; i < minParam.length; i++){
+      this[tmp[i]] = args[i];
+      
+    }
+
+  }
   ChildClass.prototype = Object.create(ParentClass.prototype);
   ChildClass.prototype.constructor = ChildClass;
   ChildClass.prototype._super = ParentClass.prototype;
 
   return ChildClass;
 }
-
-var Man = inherit(Human);
-// Man.prototype = {
-// 	init : function(name) {
-//         name = 'Mr. ' + name;
-//         this._super.init.call(this, name); // call super
-//     }
-// }; - не работает
-// Man.prototype.constructor = function(name, age,beard) {
-//   name = 'Mr. ' + name;
-//   this._super.constructor.call(this, name, age); // call super
-//   this.beard = beard;
-// };  - не работает
+var manKeys = {
+  name: 0,
+  age: 0,
+  beard: false
+}
+var Man = inherit(Human,manKeys);
 Man.prototype.init = function(name, age,beard) {
   name = 'Mr. ' + name;
   this._super.constructor.call(this, name, age); // call super
   this.beard = beard;
 }
 
-var he = new Man('Jack', 20, true);
-he.init('Jack', 20, true);
+var he = new Man('Jacky', 220, true);
+// var he = new Man();
+// he.init('Jack', 20, true);
 he.run();
 console.dir(he);
 
-var Woman = inherit(Human);
+var womanKeys = {
+  name: 0,
+  age: 0,
+  color: 'redhead'
+}
+var Woman = inherit(Human,womanKeys);
 Woman.prototype.init = function(name,age, color = 'redhead'){
   name = 'Ms. ' + name;
   this._super.constructor.call(this,name,age);
@@ -226,10 +240,10 @@ Woman.prototype.birthBaby = function(){
   console.log(`Я, ${this.name}, родила ребенка.`);
 }
 
-var she = new Woman();
-var jess = new Woman();
-she.init('Alisa',22, 'brunette');
-jess.init('Jess', 19);
+var she = new Woman('Alisa',22, 'brunette');
+var jess = new Woman('Jess', 19);
+// she.init('Alisa',22, 'brunette');
+// jess.init('Jess', 19);
 jess.run();
 she.birthBaby();
 console.dir(she);
@@ -291,3 +305,100 @@ woman.run();
 woman.birthBaby();
 
 
+// ---------------HW - промисы / async/await--------------------
+console.log('/ --------- HW - промисы ----------- \\');
+
+function getMomAns(think){
+  console.log('Мама думает ', think);
+
+  return new Promise(function(resolve, reject){
+    setTimeout(() => {
+      let ans = Math.random();
+      if (ans > .3) { 
+        resolve(true)
+      }
+      else {
+        const reason = new Error('Не будет тебе телефона');
+        reject(reason);
+        // reject('Не будет тебе телефона');
+      }
+    }, 1500);
+  });
+}
+function payPhone(){ return new Promise(
+    function(resolve,reject) {
+      setTimeout(() => {
+        console.log('Купили телефон');
+        resolve( {name: 'Samsung', color: 'black'} );
+      }, 1500);
+    }
+  );
+};
+
+function installApp(phone){
+  console.log('Настраиваю телефон...');
+  phone.tuned = true;
+  return Promise.resolve(phone);
+};
+
+function showPhone(phone){
+  console.log(`Хвастаюсь\nPhone: ${phone.name}\nColor: ${phone.color}\nНастроен: ${phone.tuned}`);
+};
+
+function mainWay() {
+  console.log('Прошу телефон!');
+  getMomAns("о покупке...")
+    .then(function(){
+      console.log('УРаа. Мама согласилась');
+    })
+    .then(payPhone)
+    .then(installApp)
+    .then(showPhone)
+    .catch(function(err) {
+      console.error(err.message);
+    });
+}
+
+mainWay();
+
+
+// /* на async / await */
+// async function payPhoneAA() {
+//   return new Promise(
+//       (resolve, reject) => {
+//           var phone = {name: 'Xiaomi', color: 'grey'};
+//           console.log('Купили телефон');
+//           resolve(phone);
+//       }
+//   );
+// };
+// async function installAppAA(phone){
+//       console.log('Настраиваю телефон...');
+//       phone.tuned = true;
+//       Promise.resolve(phone);
+// };
+// async function showPhoneAA(phone){
+//    return (`Хвастаюсь\nPhone: ${phone.name}\nColor: ${phone.color}\nНастроен: ${phone.tuned}`);
+// };
+
+// async function getMom(flag) {
+//     try {
+//       console.log('Прошу маму 2 телефон');
+  
+  
+//         let ans = await getMomAns('о покупке');
+//         let phone = await payPhoneAA();
+//         let app = await installAppAA(phone);
+//         let mess = await showPhoneAA(phone);
+  
+//         console.log(mess);
+//         console.log('after asking mom');
+//     }
+//     catch (error) { // reject промиса ловится здесь
+//         console.error(error.message + ' :c');
+//     }
+// }
+
+// (async () => {
+//   await getMom();
+// })();
