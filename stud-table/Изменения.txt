@@ -1,0 +1,1 @@
+﻿Чтобы сборка работала на github pages изменил в index.html с <base href="/"> на <base href=".">
