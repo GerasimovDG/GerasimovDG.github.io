@@ -9384,18 +9384,130 @@
           \**************************************************/
         /*! no static exports found */
         /***/ (function (module, exports, __webpack_require__) {
-            /**
-            * @license
-            * Copyright Google Inc. All Rights Reserved.
-            *
-            * Use of this source code is governed by an MIT-style license that can be
-            * found in the LICENSE file at https://angular.io/license
-            */
-            (function (global, factory) {
-                true ? factory() :
+            var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__; /**
+             * @license Angular v0.10.2
+             * (c) 2010-2019 Google LLC. https://angular.io/
+             * License: MIT
+             */
+            (function (factory) {
+                true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+                    __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+                        (__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+                        __WEBPACK_AMD_DEFINE_FACTORY__),
+                    __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) :
                     undefined;
-            }(this, (function () {
+            }(function () {
                 'use strict';
+                /**
+                 * @license
+                 * Copyright Google Inc. All Rights Reserved.
+                 *
+                 * Use of this source code is governed by an MIT-style license that can be
+                 * found in the LICENSE file at https://angular.io/license
+                 */
+                /*
+                 * This is necessary for Chrome and Chrome mobile, to enable
+                 * things like redefining `createdCallback` on an element.
+                 */
+                var zoneSymbol;
+                var _defineProperty;
+                var _getOwnPropertyDescriptor;
+                var _create;
+                var unconfigurablesKey;
+                function propertyPatch() {
+                    zoneSymbol = Zone.__symbol__;
+                    _defineProperty = Object[zoneSymbol('defineProperty')] = Object.defineProperty;
+                    _getOwnPropertyDescriptor = Object[zoneSymbol('getOwnPropertyDescriptor')] =
+                        Object.getOwnPropertyDescriptor;
+                    _create = Object.create;
+                    unconfigurablesKey = zoneSymbol('unconfigurables');
+                    Object.defineProperty = function (obj, prop, desc) {
+                        if (isUnconfigurable(obj, prop)) {
+                            throw new TypeError('Cannot assign to read only property \'' + prop + '\' of ' + obj);
+                        }
+                        var originalConfigurableFlag = desc.configurable;
+                        if (prop !== 'prototype') {
+                            desc = rewriteDescriptor(obj, prop, desc);
+                        }
+                        return _tryDefineProperty(obj, prop, desc, originalConfigurableFlag);
+                    };
+                    Object.defineProperties = function (obj, props) {
+                        Object.keys(props).forEach(function (prop) { Object.defineProperty(obj, prop, props[prop]); });
+                        return obj;
+                    };
+                    Object.create = function (obj, proto) {
+                        if (typeof proto === 'object' && !Object.isFrozen(proto)) {
+                            Object.keys(proto).forEach(function (prop) {
+                                proto[prop] = rewriteDescriptor(obj, prop, proto[prop]);
+                            });
+                        }
+                        return _create(obj, proto);
+                    };
+                    Object.getOwnPropertyDescriptor = function (obj, prop) {
+                        var desc = _getOwnPropertyDescriptor(obj, prop);
+                        if (desc && isUnconfigurable(obj, prop)) {
+                            desc.configurable = false;
+                        }
+                        return desc;
+                    };
+                }
+                function _redefineProperty(obj, prop, desc) {
+                    var originalConfigurableFlag = desc.configurable;
+                    desc = rewriteDescriptor(obj, prop, desc);
+                    return _tryDefineProperty(obj, prop, desc, originalConfigurableFlag);
+                }
+                function isUnconfigurable(obj, prop) {
+                    return obj && obj[unconfigurablesKey] && obj[unconfigurablesKey][prop];
+                }
+                function rewriteDescriptor(obj, prop, desc) {
+                    // issue-927, if the desc is frozen, don't try to change the desc
+                    if (!Object.isFrozen(desc)) {
+                        desc.configurable = true;
+                    }
+                    if (!desc.configurable) {
+                        // issue-927, if the obj is frozen, don't try to set the desc to obj
+                        if (!obj[unconfigurablesKey] && !Object.isFrozen(obj)) {
+                            _defineProperty(obj, unconfigurablesKey, { writable: true, value: {} });
+                        }
+                        if (obj[unconfigurablesKey]) {
+                            obj[unconfigurablesKey][prop] = true;
+                        }
+                    }
+                    return desc;
+                }
+                function _tryDefineProperty(obj, prop, desc, originalConfigurableFlag) {
+                    try {
+                        return _defineProperty(obj, prop, desc);
+                    }
+                    catch (error) {
+                        if (desc.configurable) {
+                            // In case of errors, when the configurable flag was likely set by rewriteDescriptor(), let's
+                            // retry with the original flag value
+                            if (typeof originalConfigurableFlag == 'undefined') {
+                                delete desc.configurable;
+                            }
+                            else {
+                                desc.configurable = originalConfigurableFlag;
+                            }
+                            try {
+                                return _defineProperty(obj, prop, desc);
+                            }
+                            catch (error) {
+                                var descJson = null;
+                                try {
+                                    descJson = JSON.stringify(desc);
+                                }
+                                catch (error) {
+                                    descJson = desc.toString();
+                                }
+                                console.log("Attempting to configure '" + prop + "' with descriptor '" + descJson + "' on object '" + obj + "' and got error, giving up: " + error);
+                            }
+                        }
+                        else {
+                            throw error;
+                        }
+                    }
+                }
                 /**
                  * @license
                  * Copyright Google Inc. All Rights Reserved.
@@ -9430,6 +9542,17 @@
                     var ADD_EVENT_LISTENER_SOURCE = '.addEventListener:';
                     var FUNCTION_WRAPPER = '[object FunctionWrapper]';
                     var BROWSER_TOOLS = 'function __BROWSERTOOLS_CONSOLE_SAFEFUNC() { [native code] }';
+                    var pointerEventsMap = {
+                        'MSPointerCancel': 'pointercancel',
+                        'MSPointerDown': 'pointerdown',
+                        'MSPointerEnter': 'pointerenter',
+                        'MSPointerHover': 'pointerhover',
+                        'MSPointerLeave': 'pointerleave',
+                        'MSPointerMove': 'pointermove',
+                        'MSPointerOut': 'pointerout',
+                        'MSPointerOver': 'pointerover',
+                        'MSPointerUp': 'pointerup'
+                    };
                     //  predefine all __zone_symbol__ + eventName + true/false string
                     for (var i = 0; i < eventNames.length; i++) {
                         var eventName = eventNames[i];
@@ -9442,7 +9565,7 @@
                         zoneSymbolEventNames[eventName][TRUE_STR] = symbolCapture;
                     }
                     //  predefine all task.source string
-                    for (var i = 0; i < WTF_ISSUE_555.length; i++) {
+                    for (var i = 0; i < WTF_ISSUE_555_ARRAY.length; i++) {
                         var target = WTF_ISSUE_555_ARRAY[i];
                         var targets = globalSources[target] = {};
                         for (var j = 0; j < eventNames.length; j++) {
@@ -9491,7 +9614,13 @@
                     }
                     // vh is validateHandler to check event handler
                     // is valid or not(for security check)
-                    api.patchEventTarget(_global, apiTypes, { vh: checkIEAndCrossContext });
+                    api.patchEventTarget(_global, apiTypes, {
+                        vh: checkIEAndCrossContext,
+                        transferEventName: function (eventName) {
+                            var pointerEventName = pointerEventsMap[eventName];
+                            return pointerEventName || eventName;
+                        }
+                    });
                     Zone[api.symbol('patchEventTarget')] = !!_global[EVENT_TARGET];
                     return true;
                 }
@@ -9556,10 +9685,6 @@
                  * Use of this source code is governed by an MIT-style license that can be
                  * found in the LICENSE file at https://angular.io/license
                  */
-                /**
-                 * @fileoverview
-                 * @suppress {globalThis}
-                 */
                 function propertyDescriptorLegacyPatch(api, _global) {
                     var _a = api.getGlobalObjects(), isNode = _a.isNode, isMix = _a.isMix;
                     if (isNode && !isMix) {
@@ -9589,13 +9714,7 @@
                         // try to use onclick to detect whether we can patch via propertyDescriptor
                         // because XMLHttpRequest is not available in service worker
                         if (desc) {
-                            api.ObjectDefineProperty(Element.prototype, 'onclick', {
-                                enumerable: true,
-                                configurable: true,
-                                get: function () {
-                                    return true;
-                                }
-                            });
+                            api.ObjectDefineProperty(Element.prototype, 'onclick', { enumerable: true, configurable: true, get: function () { return true; } });
                             var div = document.createElement('div');
                             var result = !!div.onclick;
                             api.ObjectDefineProperty(Element.prototype, 'onclick', desc);
@@ -9617,13 +9736,7 @@
                     // and if XMLHttpRequest.prototype.onreadystatechange is undefined,
                     // we should set a real desc instead a fake one
                     if (xhrDesc) {
-                        api.ObjectDefineProperty(XMLHttpRequestPrototype, ON_READY_STATE_CHANGE, {
-                            enumerable: true,
-                            configurable: true,
-                            get: function () {
-                                return true;
-                            }
-                        });
+                        api.ObjectDefineProperty(XMLHttpRequestPrototype, ON_READY_STATE_CHANGE, { enumerable: true, configurable: true, get: function () { return true; } });
                         var req = new XMLHttpRequest();
                         var result = !!req.onreadystatechange;
                         // restore original desc
@@ -9635,12 +9748,8 @@
                         api.ObjectDefineProperty(XMLHttpRequestPrototype, ON_READY_STATE_CHANGE, {
                             enumerable: true,
                             configurable: true,
-                            get: function () {
-                                return this[SYMBOL_FAKE_ONREADYSTATECHANGE_1];
-                            },
-                            set: function (value) {
-                                this[SYMBOL_FAKE_ONREADYSTATECHANGE_1] = value;
-                            }
+                            get: function () { return this[SYMBOL_FAKE_ONREADYSTATECHANGE_1]; },
+                            set: function (value) { this[SYMBOL_FAKE_ONREADYSTATECHANGE_1] = value; }
                         });
                         var req = new XMLHttpRequest();
                         var detectFunc = function () { };
@@ -9703,13 +9812,15 @@
                  * Use of this source code is governed by an MIT-style license that can be
                  * found in the LICENSE file at https://angular.io/license
                  */
-                /**
-                 * @fileoverview
-                 * @suppress {missingRequire}
-                 */
                 (function (_global) {
-                    _global['__zone_symbol__legacyPatch'] = function () {
+                    var symbolPrefix = _global['__Zone_symbol_prefix'] || '__zone_symbol__';
+                    function __symbol__(name) { return symbolPrefix + name; }
+                    _global[__symbol__('legacyPatch')] = function () {
                         var Zone = _global['Zone'];
+                        Zone.__load_patch('defineProperty', function (global, Zone, api) {
+                            api._redefineProperty = _redefineProperty;
+                            propertyPatch();
+                        });
                         Zone.__load_patch('registerElement', function (global, Zone, api) {
                             registerElementPatch(global, api);
                         });
@@ -9718,8 +9829,10 @@
                             propertyDescriptorLegacyPatch(api, global);
                         });
                     };
-                })(typeof window !== 'undefined' && window || typeof self !== 'undefined' && self || global);
-            })));
+                })(typeof window !== 'undefined' ?
+                    window :
+                    typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {});
+            }));
             /***/ 
         }),
         /***/ "./src/polyfills.ts": 
