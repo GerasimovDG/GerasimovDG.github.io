@@ -2020,7 +2020,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "logout",
         value: function logout() {
-          this.cookieService.delete("login");
+          this.cookieService.delete("login", "/");
           this.router.navigate(["signin"]);
         }
       }]);

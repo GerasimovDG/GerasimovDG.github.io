@@ -1163,7 +1163,7 @@ let MainLayoutComponent = class MainLayoutComponent {
     ngOnInit() {
     }
     logout() {
-        this.cookieService.delete("login");
+        this.cookieService.delete("login", "/");
         this.router.navigate(["signin"]);
     }
 };
