@@ -91,7 +91,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"dashboard\">\n  <div class=\"container\">\n    <div class=\"main-bar\">\n      <div class=\"search-bar\">\n        <div class=\"search\">\n          <input class=\"input search__input\" id=\"search\" type=\"text\" placeholder=\"Поиск фильма\"\n                 (input)=\"searchFilm($event)\"\n          >\n          <label class=\"search__label\" for=\"search\">\n            <i class=\"fas fa-search\"></i>\n          </label>\n        </div>\n      </div>\n      <div class=\"filter-bar\">\n        <div class=\"filter-date\">\n          <label for=\"date\"></label>\n          <input id=\"date\" type=\"date\" placeholder=\"Дата\">\n        </div>\n        <div class=\"filter-rating\">\n          <button class=\"dropdown-button \"\n                  [ngClass]=\"getSortRatingClass()\"\n                  (click)=\"sortByRating()\"\n          >Рейтинг</button>\n        </div>\n        <div class=\"filter-cinema\">\n          <div *ngIf=\"isCinemaDropdown\">\n            <div  class=\"dropdown\">\n              <div class=\"dropdown-content\">\n                <ul>\n                  <li class=\"dropdown__item\"\n                      *ngFor=\"let cinema of cinemas\"\n                  > {{ cinema }}</li>\n                </ul>\n              </div>\n            </div>\n          </div>\n          <button class=\"dropdown-button\"\n                  [ngClass]=\"getDropdownClass(isCinemaDropdown)\"\n                  (focusout)=\"isCinemaDropdown = false\"\n                  (click)=\"isCinemaDropdown = !isCinemaDropdown\"\n          >Кинотеатр</button>\n        </div>\n        <div class=\"filter-genre\">\n          <div *ngIf=\"isGenreDropdown\">\n            <div  class=\"dropdown\">\n              <div class=\"dropdown-content\">\n                <ul>\n                  <li class=\"dropdown__item\"\n                      *ngFor=\"let genre of genres\"\n                      (click)=\"showFilmsByGenre(genre)\"\n                  > {{ genre }}</li>\n                </ul>\n              </div>\n            </div>\n          </div>\n          <button class=\"dropdown-button\"\n                  [ngClass]=\"getDropdownClass(isGenreDropdown)\"\n\n                  (click)=\"this.isGenreDropdown = !this.isGenreDropdown\"\n          >{{ genreTitle }}</button>\n        </div>\n        <div class=\"filter-time\">\n          <div class=\"range-blog\">\n            <ng5-slider [value]=\"minValue\" (valueChange)=\"minValue=$event\" [(highValue)]=\"maxValue\"\n                        [options]=\"options\"\n            ></ng5-slider>\n          </div>\n        </div>\n      </div>\n      <!--      <div class=\"filter\">-->\n      <!--        <i class=\"fas fa-filter\"></i>-->\n      <!--      </div>-->\n    </div>\n    <div class=\"content\">\n      <div class=\"content-inner\">\n        <app-film [film]=\"film\" *ngFor=\"let film of films\"></app-film>\n      </div>\n    </div>\n  </div>\n</div>\n";
+    __webpack_exports__["default"] = "<div class=\"dashboard\">\r\n  <div class=\"container\">\r\n    <div class=\"main-bar\">\r\n      <div class=\"search-bar\">\r\n        <div class=\"search\">\r\n          <input class=\"input search__input\" id=\"search\" type=\"text\" placeholder=\"Поиск фильма\"\r\n                 (input)=\"searchFilm($event)\"\r\n          >\r\n          <label class=\"search__label\" for=\"search\">\r\n            <i class=\"fas fa-search\"></i>\r\n          </label>\r\n        </div>\r\n      </div>\r\n      <div class=\"filter-bar\">\r\n        <div class=\"filter-date\">\r\n          <label for=\"date\"></label>\r\n          <input id=\"date\" type=\"date\" placeholder=\"Дата\"\r\n                 (input)=\"showFilmsByDate($event)\" [min]=\"today\"\r\n          >\r\n        </div>\r\n        <div class=\"filter-rating\">\r\n          <button class=\"dropdown-button \"\r\n                  [ngClass]=\"getSortRatingClass()\"\r\n                  (click)=\"sortByRating()\"\r\n          >Рейтинг</button>\r\n        </div>\r\n        <div class=\"filter-cinema\">\r\n          <button class=\"dropdown-button\"\r\n                  [ngClass]=\"getDropdownClass(isCinemaDropdown)\"\r\n                  (click)=\"isCinemaDropdown = !isCinemaDropdown\"\r\n          > {{ cinemaTitle }}</button>\r\n          <div *ngIf=\"isCinemaDropdown\">\r\n            <div  class=\"dropdown\">\r\n              <div class=\"dropdown-content\">\r\n                <ul>\r\n                  <li class=\"dropdown__item\"\r\n                      (click)=\"showFilmsFromAllCinemas()\"\r\n                  > Все кинотеатры </li>\r\n                  <li class=\"dropdown__item\"\r\n                      *ngFor=\"let cinema of cinemas\"\r\n                      (click)=\"showFilmsByCinemaName(cinema.name)\"\r\n                  > {{ cinema.name }}</li>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"filter-genre\">\r\n          <button class=\"dropdown-button\"\r\n                  [ngClass]=\"getDropdownClass(isGenreDropdown)\"\r\n\r\n                  (click)=\"this.isGenreDropdown = !this.isGenreDropdown\"\r\n          >{{ genreTitle }}</button>\r\n          <div *ngIf=\"isGenreDropdown\">\r\n            <div  class=\"dropdown\">\r\n              <div class=\"dropdown-content\">\r\n                <ul>\r\n                  <li class=\"dropdown__item\"\r\n                      *ngFor=\"let genre of genres\"\r\n                      (click)=\"showFilmsByGenre(genre)\"\r\n                  > {{ genre }}</li>\r\n                </ul>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"filter-time\">\r\n          <div class=\"range-blog\">\r\n            <ng5-slider [value]=\"minValue\" (valueChange)=\"minValue=$event\" [(highValue)]=\"maxValue\"\r\n                        [options]=\"options\"\r\n                        (userChangeEnd)=\"showFilmsByTime()\"\r\n\r\n            ></ng5-slider>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"content\">\r\n      <div class=\"content-inner\">\r\n        <app-film [film]=\"film\" *ngFor=\"let film of films\"></app-film>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n";
     /***/
   },
 
@@ -1217,7 +1217,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.isCinemaDropdown = false;
         this.isGenreDropdown = false;
         this.isSortDown = null;
+        this.today = this.formatDate(new Date());
         this.genreTitle = "Жанр";
+        this.cinemaTitle = "Кинотеатр";
         this.minValue = 0;
         this.maxValue = 86399;
         this.options = {
@@ -1255,7 +1257,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.cinemas = this.dataHandler.getCinemasList();
           this.films = this.dataHandler.getFilmsList();
           this.allFilms = this.films;
-        }
+        } // форматирует дату в строку
+
+      }, {
+        key: "formatDate",
+        value: function formatDate(date) {
+          var year = date.getFullYear();
+          var MM = date.getMonth() + 1 + "";
+          var dd = "" + date.getDate();
+
+          if (MM.length < 2) {
+            MM = "0" + MM;
+          }
+
+          if (dd.length < 2) {
+            dd = "0" + dd;
+          }
+
+          return [year, MM, dd].join("-");
+        } // сортировка по рейтингу
+
       }, {
         key: "sortByRating",
         value: function sortByRating() {
@@ -1273,7 +1294,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             return first.rating >= second.rating ? 1 : -1;
           });
-        }
+        } // показать нужную стрелочку у кнопки рейтинга (или не показывать вообще)
+
       }, {
         key: "getSortRatingClass",
         value: function getSortRatingClass() {
@@ -1286,7 +1308,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           return "dropdown-button_up";
-        }
+        } // показать/скрыть выпадающий список
+
       }, {
         key: "getDropdownClass",
         value: function getDropdownClass(isOpen) {
@@ -1295,16 +1318,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           return "dropdown-button_down";
-        }
+        } // вывести список фильмов по жанру
+
       }, {
         key: "showFilmsByGenre",
         value: function showFilmsByGenre(genre) {
+          this.cinemaTitle = "Кинотеатр";
+          this.minValue = 0;
+          this.maxValue = 86399;
+          this.isSortDown = null;
+
           if (genre.toLowerCase() === "Все жанры".toLowerCase()) {
             this.genreTitle = "Жанр";
             this.films = this.allFilms;
-            this.isGenreDropdown = false;
           } else {
-            this.isGenreDropdown = false;
             this.genreTitle = genre;
             this.films = this.allFilms.filter(function (film) {
               return film.genres.find(function (filmGenre) {
@@ -1312,12 +1339,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               });
             });
           }
+
+          this.isGenreDropdown = false;
         } // hideDropdown(isDropdown: boolean): void {
         //   setTimeout( () => {
         //     this.isGenreDropdown = false;
         //     this.isCinemaDropdown = false;
         //   }, 500);
         // }
+        // поиск фильма по названию
 
       }, {
         key: "searchFilm",
@@ -1330,6 +1360,67 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (!neededFilm.trim()) {
             this.films = this.allFilms;
           }
+        } // вывести список фильмов из кинотеатра с названием name
+
+      }, {
+        key: "showFilmsByCinemaName",
+        value: function showFilmsByCinemaName(name) {
+          this.genreTitle = "Жанр";
+          this.minValue = 0;
+          this.maxValue = 86399;
+          var theater = this.dataHandler.getCinemasList().find(function (cinema) {
+            return cinema.name.toLowerCase() === name.toLowerCase();
+          });
+          this.films = theater.films;
+          this.cinemaTitle = theater.name;
+          this.isCinemaDropdown = false;
+        } // вывести список всех фильмов
+
+      }, {
+        key: "showFilmsFromAllCinemas",
+        value: function showFilmsFromAllCinemas() {
+          this.films = this.allFilms;
+          this.cinemaTitle = "Кинотеатр";
+          this.isCinemaDropdown = false;
+        } // вывести список фильмов, которые идут в заданном диаппазоне времени
+
+      }, {
+        key: "showFilmsByTime",
+        value: function showFilmsByTime() {
+          var _this3 = this;
+
+          this.isSortDown = null;
+          this.genreTitle = "Жанр";
+          this.cinemaTitle = "Кинотеатр";
+          this.films = this.allFilms.filter(function (film) {
+            if (_this3.dataHandler.getFilmSessions(film.name)) {
+              return _this3.dataHandler.getFilmSessions(film.name).find(function (session) {
+                return session.time > _this3.minValue && session.time < _this3.maxValue;
+              });
+            }
+          });
+        } // вывести список фильмов по дате
+
+      }, {
+        key: "showFilmsByDate",
+        value: function showFilmsByDate(event) {
+          var _this4 = this;
+
+          var inputValue = event.target.value;
+
+          if (!inputValue) {
+            this.films = this.allFilms;
+            return;
+          }
+
+          var inputDateTime = new Date(inputValue).getTime();
+          this.films = this.allFilms.filter(function (film) {
+            if (_this4.dataHandler.getScreeningPeriod(film.name)) {
+              return _this4.dataHandler.getScreeningPeriod(film.name).find(function (period) {
+                return period.periodStart.getTime() <= inputDateTime && period.periodEnd.getTime() >= inputDateTime;
+              });
+            }
+          });
         }
       }]);
 
@@ -1398,8 +1489,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       password: "test111"
     }];
     DataLists.genres = ["Все жанры", "Боевик", "Ужасы", "Триллер", "Фантастика", "Комедия", "Мелодрамма", "Мультфильм", "Приключения", "Детектив", "Драмма"];
-    DataLists.cinemas = ["Протон", "Соколенок", "Сентябрь", "Синема-сад"];
-    DataLists.fimls = [{
+    DataLists.films = [{
       id: 1,
       img: "badboys.jpg",
       name: "Плохие парни навсегда",
@@ -1463,6 +1553,233 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       description: "Когда сразу после празднования 85-летия известного автора криминальных романов Харлана Тромби виновника торжества " + "находят мёртвым, за расследование берётся обаятельный и дотошный частный детектив Бенуа Блан. Ему предстоит распутать тугую сеть уловок и корыстной лжи," + " которой его опутывают члены неблагополучной семьи Харлана и преданный ему персонал.",
       rating: 7.829
     }];
+    DataLists.cinemas = [{
+      name: "Протон",
+      address: "просп. Гагарина, 98, Нижний Новгород, Нижегородская обл., 603009",
+      films: [DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Плохие парни навсегда".toLowerCase();
+      }), DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Холодное сердце 2".toLowerCase();
+      })]
+    }, {
+      name: "Соколенок",
+      address: " Большая Покровская ул., 39, лит. А, Нижний Новгород, Нижегородская обл., 603000",
+      films: [DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Маяк".toLowerCase();
+      }), DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Холодное сердце 2".toLowerCase();
+      }), DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Дело Ричарда Джуэлла".toLowerCase();
+      })]
+    }, {
+      name: "Сентябрь",
+      address: "Нижний Новгород, Б.Покровская, 901ф, 6064400",
+      films: [DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Достать ножи".toLowerCase();
+      }), DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Холоп".toLowerCase();
+      }), DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Плохие парни навсегда".toLowerCase();
+      }), DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Паразиты".toLowerCase();
+      })]
+    }, {
+      name: "Синема-6",
+      address: "Нижний Новгород, ул. Родионова, 187в, ТРЦ «Фантастика»,",
+      films: [DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Достать ножи".toLowerCase();
+      }), DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Холоп".toLowerCase();
+      }), DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Плохие парни навсегда".toLowerCase();
+      }), DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Маяк".toLowerCase();
+      }), DataLists.films.find(function (film) {
+        return film.name.toLowerCase() === "Холодное сердце 2".toLowerCase();
+      })]
+    }];
+    DataLists.filmsessions = {
+      "Достать ножи": [{
+        time: 40500,
+        cinema: "Синема-6"
+      }, {
+        time: 55500,
+        cinema: "Синема-6"
+      }, {
+        time: 60600,
+        cinema: "Синема-6"
+      }, {
+        time: 50400,
+        cinema: "Сентябрь"
+      }, {
+        time: 80400,
+        cinema: "Сентябрь"
+      }],
+      "Холоп": [{
+        time: 41600,
+        cinema: "Синема-6"
+      }, {
+        time: 53500,
+        cinema: "Синема-6"
+      }, {
+        time: 65600,
+        cinema: "Синема-6"
+      }, {
+        time: 30500,
+        cinema: "Сентябрь"
+      }, {
+        time: 45400,
+        cinema: "Сентябрь"
+      }],
+      "Плохие парни навсегда": [{
+        time: 47400,
+        cinema: "Протон"
+      }, {
+        time: 57000,
+        cinema: "Протон"
+      }, {
+        time: 66600,
+        cinema: "Протон"
+      }, {
+        time: 79200,
+        cinema: "Протон"
+      }, {
+        time: 47400,
+        cinema: "Сентябрь"
+      }, {
+        time: 57600,
+        cinema: "Сентябрь"
+      }, {
+        time: 32400,
+        cinema: "Синема-6"
+      }, {
+        time: 43200,
+        cinema: "Синема-6"
+      }, {
+        time: 79200,
+        cinema: "Синема-6"
+      }],
+      "Холодное сердце 2": [{
+        time: 36000,
+        cinema: "Протон"
+      }, {
+        time: 42000,
+        cinema: "Протон"
+      }, {
+        time: 32400,
+        cinema: "Соколенок"
+      }, {
+        time: 46800,
+        cinema: "Соколенок"
+      }, {
+        time: 68400,
+        cinema: "Соколенок"
+      }, {
+        time: 36000,
+        cinema: "Синема-6"
+      }, {
+        time: 46800,
+        cinema: "Синема-6"
+      }],
+      "Маяк": [{
+        time: 39600,
+        cinema: "Соколенок"
+      }, {
+        time: 61200,
+        cinema: "Соколенок"
+      }, {
+        time: 75600,
+        cinema: "Соколенок"
+      }, {
+        time: 3600,
+        cinema: "Синема-6"
+      }, {
+        time: 82800,
+        cinema: "Синема-6"
+      }],
+      "Паразиты": [{
+        time: 600,
+        cinema: "Сентябрь"
+      }, {
+        time: 36000,
+        cinema: "Сентябрь"
+      }, {
+        time: 61200,
+        cinema: "Сентябрь"
+      }],
+      "Дело Ричарда Джуэлла": [{
+        time: 50400,
+        cinema: "Соколенок"
+      }, {
+        time: 82800,
+        cinema: "Соколенок"
+      }]
+    };
+    DataLists.filmScreeningPeriod = {
+      "Достать ножи": [{
+        cinema: "Сентябрь",
+        periodStart: new Date("2019-11-28"),
+        periodEnd: new Date("2020-03-07")
+      }, {
+        cinema: "Синема-6",
+        periodStart: new Date("2019-11-28"),
+        periodEnd: new Date("2020-03-07")
+      }],
+      "Холоп": [{
+        cinema: "Сентябрь",
+        periodStart: new Date("2019-12-26"),
+        periodEnd: new Date("2020-03-26")
+      }, {
+        cinema: "Синема-6",
+        periodStart: new Date("2019-12-26"),
+        periodEnd: new Date("2020-03-26")
+      }],
+      "Плохие парни навсегда": [{
+        cinema: "Протон",
+        periodStart: new Date("2020-01-23"),
+        periodEnd: new Date("2020-03-05")
+      }, {
+        cinema: "Сентябрь",
+        periodStart: new Date("2020-01-23"),
+        periodEnd: new Date("2020-03-23")
+      }, {
+        cinema: "Синема-6",
+        periodStart: new Date("2020-01-23"),
+        periodEnd: new Date("2020-03-23")
+      }],
+      "Холодное сердце 2": [{
+        cinema: "Протон",
+        periodStart: new Date("2019-12-28"),
+        periodEnd: new Date("2020-03-10")
+      }, {
+        cinema: "Соколенок",
+        periodStart: new Date("2019-12-28"),
+        periodEnd: new Date("2020-03-16")
+      }, {
+        cinema: "Синема-6",
+        periodStart: new Date("2019-12-28"),
+        periodEnd: new Date("2020-03-12")
+      }],
+      "Маяк": [{
+        cinema: "Соколенок",
+        periodStart: new Date("2020-01-16"),
+        periodEnd: new Date("2020-03-16")
+      }, {
+        cinema: "Синема-6",
+        periodStart: new Date("2020-01-16"),
+        periodEnd: new Date("2020-03-16")
+      }],
+      "Паразиты": [{
+        cinema: "Сентябрь",
+        periodStart: new Date("2020-01-25"),
+        periodEnd: new Date("2020-03-25")
+      }],
+      "Дело Ричарда Джуэлла": [{
+        cinema: "Сентябрь",
+        periodStart: new Date("2020-01-09"),
+        periodEnd: new Date("2020-03-09")
+      }]
+    };
     /***/
   },
 
@@ -1513,7 +1830,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(PasswordEyeDirective, [{
         key: "setup",
         value: function setup() {
-          var _this3 = this;
+          var _this5 = this;
 
           var parent = this.el.nativeElement.parentNode;
           var span = document.createElement("span");
@@ -1524,7 +1841,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.renderer.appendChild(span, this.tagI);
           this.renderer.appendChild(parent, span);
           this.tagI.addEventListener("click", function () {
-            _this3.toggleEye();
+            _this5.toggleEye();
           });
         }
       }, {
@@ -1723,11 +2040,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(FilmInformationPageComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this4 = this;
+          var _this6 = this;
 
           var filmID = this.route.snapshot.params.id;
           this.dataHandler.getFilmByID(filmID).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["take"])(1)).subscribe(function (film) {
-            return _this4.film = film;
+            return _this6.film = film;
           });
         }
       }]);
@@ -1871,7 +2188,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "submit",
         value: function submit() {
-          var _this5 = this;
+          var _this7 = this;
 
           if (this.form.invalid) {
             return;
@@ -1885,16 +2202,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.login$ = this.auth.login(user).subscribe(function (isLogin) {
             if (isLogin) {
               // 0.000231481 - 20 секунд в днях, 0,00694444 - 10 минут 0.0208333 - 30 минут
-              _this5.cookieService.set("login", "true", 0.0208333, "/", null, null, "Strict");
+              _this7.cookieService.set("login", "true", 0.0208333, "/", null, null, "Strict");
 
-              _this5.isErrorLogin = false;
+              _this7.isErrorLogin = false;
 
-              _this5.router.navigate(["dashboard"]);
+              _this7.router.navigate(["dashboard"]);
             } else {
-              _this5.isErrorLogin = true;
+              _this7.isErrorLogin = true;
             }
 
-            _this5.disableBtn = !_this5.disableBtn;
+            _this7.disableBtn = !_this7.disableBtn;
           });
         }
       }, {
@@ -2373,17 +2690,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getFilmsList",
         value: function getFilmsList() {
-          return _data_data_lists__WEBPACK_IMPORTED_MODULE_3__["DataLists"].fimls;
+          return _data_data_lists__WEBPACK_IMPORTED_MODULE_3__["DataLists"].films;
         }
       }, {
         key: "getFilmByID",
         value: function getFilmByID(id) {
-          return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(_data_data_lists__WEBPACK_IMPORTED_MODULE_3__["DataLists"].fimls.find(function (film) {
+          return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(_data_data_lists__WEBPACK_IMPORTED_MODULE_3__["DataLists"].films.find(function (film) {
             return film.id.toString() === id.toString();
           })); // return new Observable<Film>( (observer: Observer<Film>) => {
           //   const resfilm: Film = DataLists.fimls.find( film => film.id.toString() === id.toString());
           //   observer.next(resfilm);
           // });
+        }
+      }, {
+        key: "getFilmSessionsList",
+        value: function getFilmSessionsList() {
+          return _data_data_lists__WEBPACK_IMPORTED_MODULE_3__["DataLists"].filmsessions;
+        }
+      }, {
+        key: "getFilmSessions",
+        value: function getFilmSessions(filmName) {
+          return _data_data_lists__WEBPACK_IMPORTED_MODULE_3__["DataLists"].filmsessions[filmName];
+        }
+      }, {
+        key: "getScreeningPeriodList",
+        value: function getScreeningPeriodList() {
+          return _data_data_lists__WEBPACK_IMPORTED_MODULE_3__["DataLists"].filmScreeningPeriod;
+        }
+      }, {
+        key: "getScreeningPeriod",
+        value: function getScreeningPeriod(filmName) {
+          return _data_data_lists__WEBPACK_IMPORTED_MODULE_3__["DataLists"].filmScreeningPeriod[filmName];
         }
       }]);
 
