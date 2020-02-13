@@ -1244,6 +1244,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         /** @internal */
 
         this.placesEntries = [];
+        /** @internal */
+
         this.countPlacesInRow = [];
         /** @internal */
 
@@ -1529,6 +1531,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.isGenreDropdown = false;
         this.isSortDown = null;
+        /** @internal */
+
         this.today = this.formatDate(new Date());
         /** @internal */
 
@@ -2773,9 +2777,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var LoginPageComponent =
     /*#__PURE__*/
     function () {
-      function LoginPageComponent(auth, data, router, route, cookieService) {
+      function LoginPageComponent(cdr, auth, data, router, route, cookieService) {
         _classCallCheck(this, LoginPageComponent);
 
+        this.cdr = cdr;
         this.auth = auth;
         this.data = data;
         this.router = router;
@@ -2829,6 +2834,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
 
             _this11.disableBtn = false;
+
+            _this11.cdr.detectChanges();
           });
         }
       }, {
@@ -2874,6 +2881,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             } else {
               _this12.login$.add(_this12.loginUser(user));
             }
+
+            _this12.cdr.detectChanges();
           }));
         }
       }, {
@@ -2895,6 +2904,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     LoginPageComponent.ctorParameters = function () {
       return [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]
+      }, {
         type: _shared_services_data_service__WEBPACK_IMPORTED_MODULE_6__["AuthDataService"]
       }, {
         type: _shared_services_data_service__WEBPACK_IMPORTED_MODULE_6__["DataService"]

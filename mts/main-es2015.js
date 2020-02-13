@@ -593,6 +593,7 @@ let BookingPageComponent = class BookingPageComponent {
         this.places = new Map();
         /** @internal */
         this.placesEntries = [];
+        /** @internal */
         this.countPlacesInRow = [];
         /** @internal */
         this.rowIdx = 0;
@@ -784,6 +785,7 @@ let DashboardComponent = class DashboardComponent {
         /** @internal */
         this.isGenreDropdown = false;
         this.isSortDown = null;
+        /** @internal */
         this.today = this.formatDate(new Date());
         /** @internal */
         this.genreTitle = "Жанр";
@@ -1535,7 +1537,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginPageComponent = class LoginPageComponent {
-    constructor(auth, data, router, route, cookieService) {
+    constructor(cdr, auth, data, router, route, cookieService) {
+        this.cdr = cdr;
         this.auth = auth;
         this.data = data;
         this.router = router;
@@ -1594,6 +1597,7 @@ let LoginPageComponent = class LoginPageComponent {
                 this.isErrorLogin = true;
             }
             this.disableBtn = false;
+            this.cdr.detectChanges();
         });
     }
     submit() {
@@ -1630,6 +1634,7 @@ let LoginPageComponent = class LoginPageComponent {
             else {
                 this.login$.add(this.loginUser(user));
             }
+            this.cdr.detectChanges();
         }));
     }
     openRegisterForm() {
@@ -1642,6 +1647,7 @@ let LoginPageComponent = class LoginPageComponent {
     }
 };
 LoginPageComponent.ctorParameters = () => [
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"] },
     { type: _shared_services_data_service__WEBPACK_IMPORTED_MODULE_6__["AuthDataService"] },
     { type: _shared_services_data_service__WEBPACK_IMPORTED_MODULE_6__["DataService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
