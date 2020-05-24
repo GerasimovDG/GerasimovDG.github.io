@@ -6757,8 +6757,8 @@ __webpack_require__.e(/*! import() | zone-js-dist-long-stack-trace-zone-js */ "z
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\NCrckr\HW Angular TS\stud-table\src\polyfills.ts */"./src/polyfills.ts");
-module.exports = __webpack_require__(/*! D:\NCrckr\HW Angular TS\stud-table\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
+__webpack_require__(/*! D:\NCrckr, JS, CSS\Netcracker Course\HW Angular TS\stud-table\src\polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! D:\NCrckr, JS, CSS\Netcracker Course\HW Angular TS\stud-table\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
 
 
 /***/ })
