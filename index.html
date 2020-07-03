@@ -1,8 +1,163 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Gerasimov Dmitry</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,900;1,100;1,300;1,900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,700;1,200&family=Pacifico&display=swap" rel="stylesheet">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+</head>
+<body>
+	<header class="header">
+		<div class="container">
+			<div class="header__inner">
+				<div class="photo-block">
+					<div class="photo-block__inner">
+						<img class="photo-block__img" src="img/me2.png" alt="photo of me">
+					</div>
+				</div>
+				<div class="info-block">
+					<div class="info-block__name">Герасимов Дмитрий</div>
+					<div class="info-block__email">
+						<a href="mailto:gerasimov-dmr@yandex.ru" target="_blank">
+							<i class="far fa-envelope"></i>gerasimov-dmr@yandex.ru
+						</a>
+					</div>
+					<div class="info-contacts">
+						<div class="info-contacts__item info-contacts__item_github">
+							<a href="https://github.com/GerasimovDG" target="_blank">
+								<i class="fab fa-github"></i>GerasimovDG
+							</a>
+						</div>
+						<div class="info-contacts__item info-contacts__item_instagram">
+							<a href="https://www.instagram.com/bagetinfo/" target="_blank">
+								<i class="fab fa-instagram"></i>bagetinfo
+							</a>
+						</div>
+						<div class="info-contacts__item info-contacts__item_telegram">
+							<a href="https://t.me/Baget" target="_blank">
+								<i class="fab fa-telegram-plane"></i>@Baget
+							</a>
+						</div>
+					</div>
+					<div class="info-block__description">
+						Зравствуйте, меня зовут Герасимов Дмитрий. Эта страница - мое мини-портфолио. Здесь представлены некоторые мои проекты, а также работы по учебе в университете.
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<section class="section">
+		<div class="projects__header">
+			<div class="projects__title">Мои работы</div>
+		</div>
+		<div class="projects">
+			<div class="container">
+				<div class="projects-item">
+					<div class="projects-item__picture">
+						<img src="img/movie.png" alt="">
+					</div>
+					<div class="projects-item__info info">
+						<div class="info__name"> <a href="https://github.com/GerasimovDG/MovieHeroku" target="_blank">Movie Ticket System</a></div>
+						<div class="info__lang info__lang_js"> <b>Язык программирования:</b> JavaScript</div>
+						<div class="info__description"> <b>Описание:</b>  Работа написана с помощью фреймворка <b>Angular.</b> Имитирует сервис по продаже билетов в кино. Есть фильтр по интересующим вас позициям: дате, рейтингу, кинотеатру, жанру, времени. Можно выбрать кинотеатр, в котором показывают данный фильм, сеанс и место в зале. Также имитируется покупка билетов. Есть проверка форм при авторизации/регистрации. При выборе мест и покупке билета также есть валидация форм и различные проверки. </div>
+						<div class="info__other">
+							<b>Данные для входа:</b>
+							Логин - <em class="copyText" onclick="copyText(event)">admin</em>,
+							Пароль - <em class="copyText" onclick="copyText(event)">admin1</em>
+						</div>
+						<a	class="info__github-link link" 
+						href="https://github.com/GerasimovDG/MovieHeroku" 
+						target="_blank">
+						<i class="fab fa-github"></i>Исходный код
+					</a>
+					<a	class="info__site-link link" 
+					tooltip="Т.к. сайт загружен на Heroku, для первого запуска придется подождать несколько секунд. Потерпите!"
+					href="https://movie-ts.herokuapp.com/" target="_blank">
+					<i class="fas fa-external-link-square-alt"></i>Сайт
+				</a>
+			</div>
+		</div>
+
+		<div class="projects-item">
+			<a href="https://github.com/GerasimovDG/Angular-stub-table" target="_blank" class="projects-item__picture">
+				<img src="img/students.png" alt="">
+			</a>
+			<div class="projects-item__info info">
+				<div class="info__name"> <a href="https://github.com/GerasimovDG/Angular-stub-table" target="_blank">Student Information Table</a></div>
+				<div class="info__lang info__lang_js"> <b>Язык программирования:</b> JavaScript</div>
+				<div class="info__description"> <b>Описание:</b> Работа написана с помощью фреймворка <b>Angular.</b> Список студентов. Есть возможность поиска студента по имении или фамилии. Есть сортировка по фамилии, среднему баллу, дате рождения. Можно добавить, удалить, редактировать студента с помошью соответствующей формы. Есть валидация формы.</div>
+				<a	class="info__github-link link" 
+				href="https://github.com/GerasimovDG/Angular-stub-table" 
+				target="_blank">
+				<i class="fab fa-github"></i>Исходный код
+			</a>
+			<a  class="info__site-link link" 
+			tooltip="Т.к. сервер загружен на Heroku, список студентов первый раз будет загружаться чуть дольше. Потерпите!" 
+			href="https://gerasimovdg.github.io/stud-table/" target="_blank">
+			<i class="fas fa-external-link-square-alt"></i>Сайт
+		</a>
+	</div>
+</div>
+
+<div class="projects-item">
+	<div class="projects-item__picture">
+		<img src="img/server1.png" alt="">
+	</div>
+	<div class="projects-item__info info">
+		<div class="info__name"> 
+			<a href="https://github.com/GerasimovDG/NestJS_Server" target="_blank">NestJS Server для Student Table
+			</a>
+		</div>
+		<div class="info__lang info__lang_js"> <b>Язык программирования:</b> JavaScript</div>
+		<div class="info__description"> <b>Описание:</b>  Работа написана с помощью фреймворка <b>NestJS.</b>
+		Небольшой бэк, написанный для работы проектов, указанных выше (Бронирование билетов в кино, Список студентов).</div>
+		<a  class="info__github-link link" 
+		href="https://github.com/GerasimovDG/NestJS_Server" target="_blank"> 
+		<i class="fab fa-github"></i>
+		Исходный код
+	</a>
+	<a class="info__site-link link" tooltip=".com/items - список студентов .com/films - список фильмов .com/	theaters - лист кинотеатров"  
+	href="http://backend-for-lab.herokuapp.com/films" target="_blank">
+	<i class="fas fa-external-link-square-alt"></i>Сервер
+</a>
+</div>
+</div>
+
+<div class="projects-item">
+	<div class="projects-item__picture projects-item__picture_patterns">
+		<img src="img/VID2.gif" alt="">
+	</div>
+	<div class="projects-item__info info">
+		<div class="info__name"> <a href="https://github.com/GerasimovDG/DesignPatterns" target="_blank">Design Patterns</a></div>
+		<div class="info__lang info__lang_java"> <b>Язык программирования:</b> Java</div>
+		<div class="info__description"> <b>Описание:</b>  Программа написана с использованием <b>JavaFX.</b> Лабораторная работа по курсу "Шаблоны проектирования". Реализованы шаблоны <b><em>Мост</em></b>  и <b><em>Декоратор</em></b> .</div>
+		<div>
+			<a class="info__github-link link" href="https://github.com/GerasimovDG/DesignPatterns" target="_blank">
+				<i class="fab fa-github"></i>Исходный код
+			</a>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<script src="js/main.js"></script>
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<title>HW NCr</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="style_HW2.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 </head>
@@ -28,4 +183,4 @@
 
 	<script src="main.js"></script>
 </body>
-</html>
+</html> -->
