@@ -25,13 +25,9 @@ function copyText(event) {
 }
 
 
-
-//слайдер фото
-let images = document.querySelectorAll('.photo-block__img');
+// слайдер фото
 let current = 0;
-console.dir(images);
-
-function slider() {
+function slider(images) {
 	for (let image of images) {
 		console.dir(image);
 		image.classList.add('opacity0');
@@ -39,13 +35,37 @@ function slider() {
 	images[current].classList.remove('opacity0');
 }
 
-document.querySelector('.btn-slider_right').onclick = function() {
+function sliderRight(images) {
 	current = (++current) % images.length;
-	slider();
+	slider(images);
 }
-document.querySelector('.btn-slider_left').onclick = function() {
+function sliderLeft(images) {
 	current = (--current) % images.length;
-	console.log(current);
 	current = current === -1 ? images.length-1 : current;
-	slider();
+	slider(images);
 }
+
+document.querySelectorAll('.btn-slider').forEach( btn => {
+	btn.onclick = function() {
+		let images = [];
+
+
+		let current = 0;
+		btn.parentNode.childNodes.forEach( elem => {
+			console.log(elem.localName)
+			if (elem.localName === 'img') {
+				images.push(elem);
+			}
+		});
+		console.log(btn.parentNode.childNodes);
+		console.log(images);
+
+		if (btn.className.includes('btn-slider_right')) {
+			sliderRight(images);
+		} else if (btn.className.includes('btn-slider_left')) {
+			sliderLeft(images);
+		}
+	}
+});
+
+
