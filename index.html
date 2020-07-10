@@ -18,8 +18,6 @@
 					<div class="photo-block__inner">
 						<img class="photo-block__img" src="img/me2.png" alt="photo of me">
 					</div>
-					<!-- <div class="btn-slider btn-slider_left"></div>
-					<div class="btn-slider btn-slider_right"></div> -->
 				</div>
 				<div class="info-block">
 					<div class="info-block__name">Герасимов Дмитрий</div>
@@ -69,8 +67,12 @@
 						<img src="img/movie/movie3.png" alt="" class="opacity0">
 						<img src="img/movie/movie4.png" alt="" class="opacity0">
 						<img src="img/movie/movie5.png" alt="" class="opacity0">
-						<div class="btn-slider btn-slider_left"></div>
-						<div class="btn-slider btn-slider_right"></div>
+						<div class="btn-slider btn-slider_left">
+							<i class="fas fa-chevron-circle-left"></i>
+						</div>
+						<div class="btn-slider btn-slider_right">
+							<i class="fas fa-chevron-circle-right"></i>
+						</div>
 					</a>
 					<div class="projects-item__info info">
 						<div class="info__name"> <a href="https://github.com/GerasimovDG/MovieHeroku" target="_blank">Movie Ticket System</a></div>
@@ -93,87 +95,96 @@
 								<i class="fas fa-external-link-square-alt"></i>Сайт
 							</a>
 						</div>
-						
+					</div>
+				</div>
+
+				<div class="projects-item">
+					<a class="projects-item__picture">
+						<img src="img/stud/stud1.png" alt="">
+						<img src="img/stud/stud2.png" alt="" class="opacity0">
+						<img src="img/stud/stud3.png" alt="" class="opacity0">
+						<img src="img/stud/stud4.png" alt="" class="opacity0">
+						<img src="img/stud/stud5.png" alt="" class="opacity0">
+						<img src="img/stud/stud6.png" alt="" class="opacity0">
+						<div class="btn-slider btn-slider_left">
+							<i class="fas fa-chevron-circle-left"></i>
+						</div>
+						<div class="btn-slider btn-slider_right">
+							<i class="fas fa-chevron-circle-right"></i>
+						</div>
+					</a>
+					<div class="projects-item__info info">
+						<div class="info__name"> <a href="https://github.com/GerasimovDG/Angular-stub-table" target="_blank">Student Information Table</a></div>
+						<div class="info__lang info__lang_js"> <b>Язык программирования:</b> JavaScript</div>
+						<div class="info__description"> <b>Описание:</b> Работа написана с помощью фреймворка <b>Angular.</b> Список студентов. Есть возможность поиска студента по имении или фамилии. Есть сортировка по фамилии, среднему баллу, дате рождения. Можно добавить, удалить, редактировать студента с помошью соответствующей формы. Есть валидация формы.</div>
+						<div class="links">
+							<a	class="info__github-link link" 
+							href="https://github.com/GerasimovDG/Angular-stub-table" 
+							target="_blank">
+								<i class="fab fa-github"></i>Исходный код
+							</a>
+							<a  class="info__site-link link" 
+							tooltip="Т.к. сервер загружен на Heroku, список студентов первый раз будет загружаться чуть дольше. Потерпите!" 
+							href="https://gerasimovdg.github.io/stud-table/" target="_blank">
+								<i class="fas fa-external-link-square-alt"></i>Сайт
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="projects-item">
+					<a class="projects-item__picture">
+						<img src="img/serv/serv1.png" alt="">
+					</a>
+					<div class="projects-item__info info">
+						<div class="info__name"> 
+							<a href="https://github.com/GerasimovDG/NestJS_Server" target="_blank">NestJS Server для Student Table
+							</a>
+						</div>
+						<div class="info__lang info__lang_js"> <b>Язык программирования:</b> JavaScript</div>
+						<div class="info__description"> 
+							<b>Описание:</b>  Работа написана с помощью фреймворка <b>NestJS.</b>
+							Небольшой бэк, написанный для работы проектов, указанных выше (Бронирование билетов в кино, Список студентов).
+						</div>
+						<div class="links">
+							<a class="info__github-link link" 
+							href="https://github.com/GerasimovDG/NestJS_Server" target="_blank"> 
+								<i class="fab fa-github"></i>
+							Исходный код
+							</a>
+							<a class="info__site-link link" tooltip=".com/items - список студентов .com/films - список фильмов .com/	theaters - лист кинотеатров"  
+							href="http://backend-for-lab.herokuapp.com/films" target="_blank">
+								<i class="fas fa-external-link-square-alt"></i>Сервер
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="projects-item">
+					<a class="projects-item__picture projects-item__picture_patterns">
+						<img src="img/designPatterns/VID2.gif" alt="">
+						<img src="img/designPatterns/VID1.gif" alt="" class="opacity0">
+						<div class="btn-slider btn-slider_left">
+							<i class="fas fa-chevron-circle-left"></i>
+						</div>
+						<div class="btn-slider btn-slider_right">
+							<i class="fas fa-chevron-circle-right"></i>
+						</div>
+					</a>
+					<div class="projects-item__info info">
+						<div class="info__name"> <a href="https://github.com/GerasimovDG/DesignPatterns" target="_blank">Design Patterns</a></div>
+						<div class="info__lang info__lang_java"> <b>Язык программирования:</b> Java</div>
+						<div class="info__description"> <b>Описание:</b>  Программа написана с использованием <b>JavaFX.</b> Лабораторная работа по курсу "Шаблоны проектирования". Реализованы шаблоны <b><em>Мост</em></b>  и <b><em>Декоратор</em></b> .</div>
+						<div class="links">
+							<a class="info__github-link link" href="https://github.com/GerasimovDG/DesignPatterns" target="_blank">
+								<i class="fab fa-github"></i>Исходный код
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-
-		<div class="projects-item">
-			<a class="projects-item__picture">
-				<img src="img/stud/stud1.png" alt="">
-				<img src="img/stud/stud2.png" alt="" class="opacity0">
-				<img src="img/stud/stud3.png" alt="" class="opacity0">
-				<img src="img/stud/stud4.png" alt="" class="opacity0">
-				<img src="img/stud/stud5.png" alt="" class="opacity0">
-				<img src="img/stud/stud6.png" alt="" class="opacity0">
-				<div class="btn-slider btn-slider_left"></div>
-				<div class="btn-slider btn-slider_right"></div>
-			</a>
-			<div class="projects-item__info info">
-				<div class="info__name"> <a href="https://github.com/GerasimovDG/Angular-stub-table" target="_blank">Student Information Table</a></div>
-				<div class="info__lang info__lang_js"> <b>Язык программирования:</b> JavaScript</div>
-				<div class="info__description"> <b>Описание:</b> Работа написана с помощью фреймворка <b>Angular.</b> Список студентов. Есть возможность поиска студента по имении или фамилии. Есть сортировка по фамилии, среднему баллу, дате рождения. Можно добавить, удалить, редактировать студента с помошью соответствующей формы. Есть валидация формы.</div>
-				<div class="links">
-					<a	class="info__github-link link" 
-					href="https://github.com/GerasimovDG/Angular-stub-table" 
-					target="_blank">
-						<i class="fab fa-github"></i>Исходный код
-					</a>
-					<a  class="info__site-link link" 
-					tooltip="Т.к. сервер загружен на Heroku, список студентов первый раз будет загружаться чуть дольше. Потерпите!" 
-					href="https://gerasimovdg.github.io/stud-table/" target="_blank">
-						<i class="fas fa-external-link-square-alt"></i>Сайт
-					</a>
-				</div>
-	</div>
-</div>
-
-<div class="projects-item">
-	<a class="projects-item__picture">
-		<img src="img/serv/serv1.png" alt="">
-	</a>
-	<div class="projects-item__info info">
-		<div class="info__name"> 
-			<a href="https://github.com/GerasimovDG/NestJS_Server" target="_blank">NestJS Server для Student Table
-			</a>
-		</div>
-		<div class="info__lang info__lang_js"> <b>Язык программирования:</b> JavaScript</div>
-		<div class="info__description"> <b>Описание:</b>  Работа написана с помощью фреймворка <b>NestJS.</b>
-		Небольшой бэк, написанный для работы проектов, указанных выше (Бронирование билетов в кино, Список студентов).</div>
-		<div class="links">
-			<a  class="info__github-link link" 
-			href="https://github.com/GerasimovDG/NestJS_Server" target="_blank"> 
-				<i class="fab fa-github"></i>
-			Исходный код
-			</a>
-			<a class="info__site-link link" tooltip=".com/items - список студентов .com/films - список фильмов .com/	theaters - лист кинотеатров"  
-			href="http://backend-for-lab.herokuapp.com/films" target="_blank">
-				<i class="fas fa-external-link-square-alt"></i>Сервер
-			</a>
-		</div>
-</div>
-</div>
-
-<div class="projects-item">
-	<a class="projects-item__picture projects-item__picture_patterns">
-		<img src="img/designPatterns/VID2.gif" alt="">
-		<img src="img/designPatterns/VID1.gif" alt="" class="opacity0">
-		<div class="btn-slider btn-slider_left"></div>
-		<div class="btn-slider btn-slider_right"></div>
-	</a>
-	<div class="projects-item__info info">
-		<div class="info__name"> <a href="https://github.com/GerasimovDG/DesignPatterns" target="_blank">Design Patterns</a></div>
-		<div class="info__lang info__lang_java"> <b>Язык программирования:</b> Java</div>
-		<div class="info__description"> <b>Описание:</b>  Программа написана с использованием <b>JavaFX.</b> Лабораторная работа по курсу "Шаблоны проектирования". Реализованы шаблоны <b><em>Мост</em></b>  и <b><em>Декоратор</em></b> .</div>
-		<div class="links">
-			<a class="info__github-link link" href="https://github.com/GerasimovDG/DesignPatterns" target="_blank">
-				<i class="fab fa-github"></i>Исходный код
-			</a>
-		</div>
-	</div>
-</div>
-</div>
-</div>
-</section>
+	</section>
 
 
 <script src="js/main.js"></script>

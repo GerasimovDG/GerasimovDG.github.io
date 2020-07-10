@@ -20,7 +20,6 @@ h1,h2,h3,h4,h5,h6{font-size: inherit;font-weight: inherit;}
 
 body {
 	font-family: 'Roboto', sans-serif;
-	background: red;
 }
 .container {
 	width: 100%;
@@ -76,6 +75,7 @@ body {
 		transition: all ease-out .5s;
 		opacity: 1;
 	}
+
 }
 .opacity0 {
 	opacity: 0!important;
@@ -85,38 +85,26 @@ body {
 	position: absolute;
 	display: flex;
 	justify-content: center;
-	background: rgba(0,0,0,0.5);
+	align-items: center;
+	font-size: 2rem;
+	color: rgba(0,0,0,0.3);
 	width: 40px;
 	height: 40px;
-	border-radius: 50%;
 	right: 0;
 	align-self: center;
 	margin: 0.5rem;
 	cursor: pointer;
 	z-index: 1000;
-	&:after {
-		position: absolute;
-		align-self: center;
-		content: '';
-		font-size: 1.5rem;
-		color: rgba(255,255,255,0.3);
-		transition: .5s ease;
-	}
-	&:hover:after {
-		color: rgba(255,255,255,1);
+	transition: .5s ease;
+	&:hover {
+		color: rgba(0,0,0,0.7)!important;
 	}
 }
 .btn-slider_left {
 	left: 0;
-	&:after {
-		content: '\2BC7';
-	}
 }
 .btn-slider_right {
 	right: 0;
-	&:after {
-    	content: '\2BC8';
-	}
 }
 
 
@@ -147,7 +135,6 @@ body {
 		& a {
 			color: white;
 			z-index: 1000;
-			//padding-left: 1rem;
 		}
 	}
 	&__description {
@@ -254,6 +241,9 @@ body {
 			overflow: hidden;
 			&:hover {
 				transform: scale(1.1);
+			}
+			&:hover .btn-slider {
+				color: rgba(0,0,0,0.5);
 			}
 			& img {
 				position: absolute;
