@@ -317,6 +317,7 @@ body {
 }
 
 .link {
+		-webkit-tap-highlight-color: transparent;
 	display: inline-block;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
 	background: grey;
@@ -355,9 +356,9 @@ body {
 	content: attr(tooltip); /* Выводим текст */
 	position: absolute; /* Абсолютное позиционирование */
 	width: 300px; /* Ширина подсказки */
-	left: 0; top: 0; /* Положение подсказки */
+	right: 0; top: 0; /* Положение подсказки */
 	background: #3989c9; /* Синий цвет фона */
-	text-align: justify;
+	text-align: left;
 	color: #fff; /* Цвет текста */
 	padding: 0.5em; /* Поля вокруг текста */
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Параметры тени */
@@ -373,6 +374,8 @@ body {
 
 
 .copyText {
+	outline: none!important;
+	-webkit-tap-highlight-color: transparent;
 	background: rgba(0,0,0,0.2);
 	position: relative;
 	padding: 0 0.5rem;
@@ -381,11 +384,16 @@ body {
 	transition: 0.2s ease;
 
 	&:hover {
+		outline: none!important;
+		-webkit-tap-highlight-color: transparent;
 		background: rgba(0,0,0,0.3);
 		box-shadow: 2px 2px 4px -3px #000000;
 		color: rgba(255,255,255,1);
 	}
 	&:active {
+		outline: none!important;
+		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+		-webkit-tap-highlight-color: transparent;
 		box-shadow: none;
 	}
 	
@@ -426,6 +434,55 @@ body {
 	}
 }
 
+
+
+/////// SCROLL TO TOP ////////
+.scroll-up {
+	-webkit-tap-highlight-color: transparent;
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+	z-index: 1000;
+	height: 50px;
+	width: 50px;
+	color: #dcdcdc;
+	cursor: pointer;
+	visibility: hidden;
+	border-radius: 50px;
+	box-shadow: inset 0 0 0 4px #dcdcdc;
+	opacity: 0;
+	transition: .2s;
+	transform: translateY(25px);
+
+	&::before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		font-size: 20px;
+		content: '\25b2'
+	}
+	&:hover {
+		color: rgb(76, 64, 92);
+	}
+
+	&_active {
+		visibility: visible;
+		opacity: 1;
+		transform: translateY(0);
+	}
+	&__svg-path {
+		box-sizing: border-box;
+		fill: none;
+		stroke: rgb(76, 64, 92);
+		stroke-width: 4px;
+		transition: .2s;
+	}
+}
 
 @media(max-width: 990px) {
 	.info-block {
@@ -539,6 +596,11 @@ body {
 
 	.section {
 		top: 700px;
+	}
+
+	.scroll-up_active {
+		visibility: hidden;
+		display: none;
 	}
 }
 
